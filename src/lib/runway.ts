@@ -1,8 +1,8 @@
 // Pure math for the runway. No React here, so it is easy to test and reuse (e.g. on a backend later).
 import type { Expense, Income } from '../types'
 
-// MAX_CHART_MONTHS stops the chart from drawing hundreds of points when the burn is tiny.
-const MAX_CHART_MONTHS = 120
+// STRIP_MONTHS is how many month blocks the runway strip shows (two years).
+export const STRIP_MONTHS = 24
 
 // positive() turns negative or non-numbers into 0 so bad input can't break the totals.
 const positive = (n: number) => (n > 0 ? n : 0)
@@ -32,22 +32,17 @@ export function runOutDate(from: Date, months: number): Date {
   return date
 }
 
-// balanceSeries() lists the savings balance month by month, which is what the chart draws.
-export function balanceSeries(savings: number, netBurn: number): { month: number; balance: number }[] {
-  const start = positive(savings)
+// stripFills() says how full each month block is (1 = full, 0.5 = half, 0 = empty), for the runway strip.
+export function stripFills(months: number): number[] {
+  return Array.from({ length: STRIP_MONTHS }, (_, i) => Math.min(1, Math.max(0, months - i)))
+}
 
-  // Income covers spending: show one year of a flat or rising balance.
-  if (netBurn <= 0) {
-    return Array.from({ length: 13 }, (_, month) => ({ month, balance: start - netBurn * month }))
-  }
+// RunwayZone groups the runway into short / medium / long so the strip can change shade.
+export type RunwayZone = 'low' | 'mid' | 'high'
 
-  const months = start / netBurn
-  const lastWholeMonth = Math.floor(Math.min(months, MAX_CHART_MONTHS))
-  const points = Array.from({ length: lastWholeMonth + 1 }, (_, month) => ({
-    month,
-    balance: start - netBurn * month,
-  }))
-  // Money runs out partway through a month: add that exact point at zero.
-  if (months <= MAX_CHART_MONTHS && months % 1 !== 0) points.push({ month: months, balance: 0 })
-  return points
+// runwayZone() picks the zone: under 6 months is low, under 12 is mid, 12 or more (or infinite) is high.
+export function runwayZone(months: number): RunwayZone {
+  if (months < 6) return 'low'
+  if (months < 12) return 'mid'
+  return 'high'
 }

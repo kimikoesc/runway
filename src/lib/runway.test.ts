@@ -1,4 +1,4 @@
-import { totalIncome, totalSpending, runwayMonths, runOutDate, balanceSeries } from './runway'
+import { totalIncome, totalSpending, runwayMonths, runOutDate, stripFills, runwayZone } from './runway'
 import type { Expense, Income } from '../types'
 
 // Small helpers so each test only spells out the field it cares about.
@@ -44,29 +44,27 @@ it('runOutDate does not roll past short months', () => {
   expect(d.getFullYear()).toBe(2027)
 })
 
-describe('balanceSeries', () => {
-  it('steps down by net burn each month to zero', () => {
-    expect(balanceSeries(3000, 1000)).toEqual([
-      { month: 0, balance: 3000 },
-      { month: 1, balance: 2000 },
-      { month: 2, balance: 1000 },
-      { month: 3, balance: 0 },
-    ])
+describe('stripFills', () => {
+  it('fills one block per month and part of the last', () => {
+    const fills = stripFills(2.5)
+    expect(fills).toHaveLength(24)
+    expect(fills.slice(0, 4)).toEqual([1, 1, 0.5, 0])
   })
-  it('ends at the fractional month where money hits zero', () => {
-    expect(balanceSeries(2500, 1000).at(-1)).toEqual({ month: 2.5, balance: 0 })
+  it('fills every block for 24+ months or infinite runway', () => {
+    expect(stripFills(30).every((f) => f === 1)).toBe(true)
+    expect(stripFills(Infinity).every((f) => f === 1)).toBe(true)
   })
-  it('caps at 120 months', () => {
-    expect(balanceSeries(1000, 1)).toHaveLength(121)
+  it('fills nothing with no runway', () => {
+    expect(stripFills(0).every((f) => f === 0)).toBe(true)
   })
-  it('shows 12 flat months when burn is zero', () => {
-    const s = balanceSeries(1000, 0)
-    expect(s).toHaveLength(13)
-    expect(s.every((p) => p.balance === 1000)).toBe(true)
-  })
-  it('shows 12 rising months when income exceeds spending', () => {
-    const s = balanceSeries(1000, -100)
-    expect(s).toHaveLength(13)
-    expect(s.at(-1)!.balance).toBe(2200)
+})
+
+describe('runwayZone', () => {
+  it('is low under 6 months, mid under 12, high from 12', () => {
+    expect(runwayZone(5.9)).toBe('low')
+    expect(runwayZone(6)).toBe('mid')
+    expect(runwayZone(11.9)).toBe('mid')
+    expect(runwayZone(12)).toBe('high')
+    expect(runwayZone(Infinity)).toBe('high')
   })
 })

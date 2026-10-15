@@ -5,7 +5,7 @@ import Checkbox from './Checkbox'
 import EditableText from './EditableText'
 import MoneyInput from './MoneyInput'
 import IconButton from './IconButton'
-import RunwayChart from './RunwayChart'
+import RunwayStrip from './RunwayStrip'
 
 describe('MoneyInput', () => {
   it('sends 0 when cleared', () => {
@@ -86,14 +86,21 @@ describe('IconButton', () => {
   })
 })
 
-describe('RunwayChart', () => {
-  it('describes the fall to zero', () => {
-    const { container } = render(<RunwayChart savings={3000} netBurn={1000} currency="USD" />)
-    expect(screen.getByRole('img', { name: 'Savings fall from $3,000.00 to zero over 3.0 months' })).toBeInTheDocument()
-    expect(container.querySelector('path')).not.toBeNull()
+describe('RunwayStrip', () => {
+  it('draws 24 month blocks with the last month partly filled', () => {
+    const { container } = render(<RunwayStrip months={2.5} />)
+    const blocks = container.querySelectorAll('.strip-block')
+    expect(blocks).toHaveLength(24)
+    expect((blocks[1] as HTMLElement).style.getPropertyValue('--fill')).toBe('1')
+    expect((blocks[2] as HTMLElement).style.getPropertyValue('--fill')).toBe('0.5')
+    expect((blocks[3] as HTMLElement).style.getPropertyValue('--fill')).toBe('0')
   })
-  it('says savings never run out when there is no burn', () => {
-    render(<RunwayChart savings={3000} netBurn={0} currency="USD" />)
+  it('describes the runway for screen readers', () => {
+    render(<RunwayStrip months={2.5} />)
+    expect(screen.getByRole('img', { name: '2.5 of 24 months covered' })).toBeInTheDocument()
+  })
+  it('says savings never run out when runway is infinite', () => {
+    render(<RunwayStrip months={Infinity} />)
     expect(screen.getByRole('img', { name: 'Savings never run out' })).toBeInTheDocument()
   })
 })

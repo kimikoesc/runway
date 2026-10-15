@@ -1,8 +1,8 @@
 // RunwayHeader is the top of the page: how many months savings last, a one-line explanation, and the chart.
 import { useRunway } from '../store/runwayStore'
-import { runOutDate, runwayMonths, totalIncome, totalSpending } from '../lib/runway'
+import { runOutDate, runwayMonths, runwayZone, totalIncome, totalSpending } from '../lib/runway'
 import { formatMoney, formatMonthYear } from '../lib/format'
-import RunwayChart from '../components/RunwayChart'
+import RunwayStrip from '../components/RunwayStrip'
 
 // RunwayHeader() works out the numbers from the store and shows them.
 export default function RunwayHeader() {
@@ -19,7 +19,8 @@ export default function RunwayHeader() {
   const totals = `spending ${formatMoney(spending, currency)} and earning ${formatMoney(income, currency)} a month.`
 
   return (
-    <section className="runway-header">
+    // data-zone lets the CSS pick the strip's shade of orange (see App.css).
+    <section className="runway-header" data-zone={runwayZone(months)}>
       <p className="runway-months">
         {isInfinite ? '∞' : isOver100Years ? '100+ years' : `${months.toFixed(1)} months`}
       </p>
@@ -30,7 +31,7 @@ export default function RunwayHeader() {
             ? `Savings last over 100 years, ${totals}`
             : `Savings last until about ${formatMonthYear(runOutDate(new Date(), months))}, ${totals}`}
       </p>
-      <RunwayChart savings={savings} netBurn={netBurn} currency={currency} />
+      <RunwayStrip months={months} />
     </section>
   )
 }

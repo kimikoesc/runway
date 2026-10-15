@@ -1,6 +1,6 @@
 # Runway
 
-Shows how long your savings last. Enter your savings, your income sources and your monthly spending, and the top of the page shows your runway in months, the month your money runs out, and a chart of your balance falling to zero.
+Shows how long your savings last. Enter your savings, your income sources and your monthly spending, and the top of the page shows your runway in months, the month your money runs out, and a strip of month blocks that shades from light to dark orange as your runway grows.
 
 Frontend only for now: data is saved in your browser's localStorage.
 
@@ -24,12 +24,12 @@ src/main.tsx            mounts <App /> into the page
 src/App.tsx             page layout + currency picker
 src/App.css             theme color variables + page layout
 src/types.ts            shared data types
-src/lib/runway.ts       runway math (totals, months, run-out date, chart points)
+src/lib/runway.ts       runway math (totals, months, run-out date, strip fills, zones)
 src/lib/format.ts       money/date formatting, currency list, slider limit
 src/store/runwayStore.ts  the store: state + every action + useRunway() hook
 src/store/storage.ts    load/save (localStorage today) + default sample data
 src/components/         reusable pieces: Slider, Checkbox, EditableText, MoneyInput,
-                        IconButton, StatCard, Section, RunwayChart (+ components.css)
+                        IconButton, StatCard, Section, RunwayStrip (+ components.css)
 src/features/           page sections: RunwayHeader, StatsRow, IncomeSection, SpendingSection
 ```
 
