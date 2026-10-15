@@ -46,7 +46,7 @@ export default function RunwayChart({ savings, netBurn, currency }: Props) {
       </svg>
       <figcaption className="chart-axis" aria-hidden="true">
         <span>Now</span>
-        <span>{netBurn > 0 ? `${Math.round(last.month * 10) / 10} months` : '12 months'}</span>
+        <span>{netBurn > 0 ? `${Math.round(last.month * 10) / 10} mo` : '12 mo'}</span>
       </figcaption>
     </figure>
   )

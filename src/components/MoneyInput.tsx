@@ -30,7 +30,7 @@ export default function MoneyInput({ value, currency, label, onChange }: Props) 
         inputMode="decimal" // number keypad on phones
         aria-label={label}
         placeholder="0"
-        value={draft ?? (value ? String(value) : '')}
+        value={draft ?? (value ? value.toLocaleString('en-US') : '')} // 2200000 shows as 2,200,000
         onChange={(e) => {
           setDraft(e.target.value)
           onChange(toAmount(e.target.value))

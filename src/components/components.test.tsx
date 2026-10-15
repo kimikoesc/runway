@@ -26,6 +26,10 @@ describe('MoneyInput', () => {
     userEvent.type(screen.getByLabelText('Rent'), '1200')
     expect(onChange).toHaveBeenLastCalledWith(1200)
   })
+  it('shows the saved amount with thousands separators', () => {
+    render(<MoneyInput label="Rent" value={2200000} currency="JPY" onChange={() => {}} />)
+    expect(screen.getByLabelText('Rent')).toHaveValue('2,200,000')
+  })
   it('shows the currency symbol', () => {
     render(<MoneyInput label="Rent" value={0} currency="JPY" onChange={() => {}} />)
     expect(screen.getByText('¥')).toBeInTheDocument()

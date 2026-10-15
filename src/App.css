@@ -50,3 +50,109 @@ select {
   margin: 0 auto;
   padding: calc(var(--space) * 1.5) var(--space) calc(var(--space) * 3);
 }
+
+/* Top bar: app name left, currency picker right. */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.currency-select {
+  min-height: 2.75rem;
+  padding: 0 0.75em;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-surface);
+}
+
+/* Runway header: the big number, the sentence, then the chart. */
+.runway-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: calc(var(--space) * 1.25);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.runway-months {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.runway-sentence {
+  margin: 0 0 0.5rem;
+  color: var(--color-muted);
+}
+
+/* Stats row: 4 across on wide screens, 2×2 on tablets, stacked on small phones (flex-wrap does it). */
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.stats-row .stat-card {
+  flex: 1 1 11rem;
+}
+
+/* Rows inside the income and spending cards. */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.row .editable-text {
+  flex: 1 1 5rem;
+}
+
+.row .money-input {
+  flex: 0 1 8rem;
+}
+
+.income-row {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.row-main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.expense-row {
+  flex-wrap: wrap;
+}
+
+/* When a narrow screen wraps the amount to a second line, keep it on the right. */
+.expense-row .money-input {
+  margin-left: auto;
+}
+
+/* Unchecked expense: dimmed so it's clearly not counted. */
+.expense-row.is-off .editable-text,
+.expense-row.is-off .money-input {
+  opacity: 0.45;
+}
+
+/* Bigger number on larger screens. */
+@media (min-width: 40rem) {
+  .runway-months {
+    font-size: 4rem;
+  }
+}
