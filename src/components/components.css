@@ -1,0 +1,135 @@
+/* Styles for the reusable components in this folder. Colors come from App.css variables. */
+
+/* Section: white card with a title row. */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) * 0.75);
+  padding: var(--space);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+/* IconButton: at least 2.75rem square so it's easy to tap. */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.icon-button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.icon-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* StatCard: label on top, big value below. */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: var(--space);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.stat-label {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* EditableText: looks like text until hovered or focused. */
+.editable-text {
+  min-width: 0;
+  padding: 0.25em 0.5em;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+}
+
+.editable-text:hover {
+  border-color: var(--color-border);
+}
+
+.editable-text:focus {
+  border-color: var(--color-accent);
+  background: var(--color-surface);
+  outline: none;
+}
+
+/* MoneyInput: symbol and input inside one bordered box. */
+.money-input {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  min-height: 2.75rem;
+  padding: 0 0.75em;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-surface);
+}
+
+.money-input:focus-within {
+  border-color: var(--color-accent);
+}
+
+.money-symbol {
+  color: var(--color-muted);
+}
+
+.money-input input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Slider and Checkbox: native controls tinted with the accent color. */
+.slider {
+  width: 100%;
+  min-height: 2.75rem;
+  accent-color: var(--color-accent);
+}
+
+.checkbox {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.75rem; /* grows the tap area to about 2.75rem */
+  accent-color: var(--color-accent);
+}

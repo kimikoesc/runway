@@ -1,0 +1,52 @@
+/* App.css: theme variables + page-level styles.
+   To add a theme later, override the variables under :root[data-theme="name"] and set
+   <html data-theme="name">. Nothing else needs to change. */
+
+/* Theme: every color in the app comes from here. */
+:root {
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-border: #e3e6eb;
+  --color-text: #14181f;
+  --color-muted: #646d7a;
+  --color-accent: #2563eb;
+  --color-accent-soft: #dbe6fd;
+  --color-danger: #c62828;
+
+  --radius: 0.75rem;
+  --space: 1rem;
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base: reset box sizing so padding doesn't widen elements. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+/* Inputs don't inherit fonts by default. */
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Page: one centered column, 1rem gutters on phones. */
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) * 1.5);
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: calc(var(--space) * 1.5) var(--space) calc(var(--space) * 3);
+}

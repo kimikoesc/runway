@@ -19,3 +19,9 @@ export function formatMonthYear(date: Date): string {
 export function sliderMax(currency: Currency): number {
   return currency === 'JPY' ? 1_000_000 : 10_000
 }
+
+// currencySymbol() gets just the symbol (e.g. ¥) to show beside money inputs.
+export function currencySymbol(currency: Currency): string {
+  const parts = new Intl.NumberFormat('en-US', { style: 'currency', currency }).formatToParts(0)
+  return parts.find((p) => p.type === 'currency')?.value ?? currency
+}

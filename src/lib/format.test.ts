@@ -1,4 +1,4 @@
-import { formatMoney, formatMonthYear, sliderMax } from './format'
+import { currencySymbol, formatMoney, formatMonthYear, sliderMax } from './format'
 
 it('formats yen without decimals', () => {
   expect(formatMoney(377251, 'JPY')).toBe('¥377,251')
@@ -12,4 +12,8 @@ it('formats month and year', () => {
 it('caps the income slider per currency', () => {
   expect(sliderMax('JPY')).toBe(1000000)
   expect(sliderMax('USD')).toBe(10000)
+})
+it('gets the currency symbol', () => {
+  expect(currencySymbol('JPY')).toBe('¥')
+  expect(currencySymbol('PHP')).toBe('₱')
 })
