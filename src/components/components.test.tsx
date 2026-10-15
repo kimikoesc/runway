@@ -62,6 +62,10 @@ describe('Slider', () => {
     fireEvent.change(screen.getByLabelText('Salary'), { target: { value: '500' } })
     expect(onChange).toHaveBeenCalledWith(500)
   })
+  it('tells CSS how much of the track to fill', () => {
+    render(<Slider label="Salary" value={250} min={0} max={1000} step={10} onChange={() => {}} />)
+    expect(screen.getByLabelText('Salary').style.getPropertyValue('--fill')).toBe('25%')
+  })
   it('sits at max when the value is above max', () => {
     render(<Slider label="Salary" value={5000} min={0} max={1000} step={10} onChange={() => {}} />)
     expect(screen.getByLabelText('Salary')).toHaveValue('1000')

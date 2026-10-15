@@ -10,15 +10,15 @@
   --color-border: #e8e4da;
   --color-text: #1f1e1d;
   --color-muted: #6f6b63;
-  --color-brand: #f28c28; /* brand orange: logo and runway strip */
-  --color-accent: #d9741a; /* same orange, a shade deeper so sliders, checkboxes and borders stay visible (3.25:1 on white) */
-  --color-accent-soft: #fde3c8;
+  --color-accent: #f28c28; /* brand orange: logo, strip, sliders, checkboxes, borders */
+  --color-accent-soft: #fce5cf; /* same orange, very light: focus rings */
+  --color-on-accent: #ffffff; /* checkmark on an orange box */
   --color-track: #efebe3; /* empty month blocks */
 
-  /* Runway strip shades: more runway = darker orange. */
-  --zone-low: #f7b26f; /* under 6 months */
-  --zone-mid: var(--color-brand); /* 6–12 months */
-  --zone-high: #c4650f; /* 12+ months */
+  /* Runway strip shades: the brand orange in the middle, lighter and darker at the same hue. More runway = darker. */
+  --zone-low: #f7b778; /* under 6 months */
+  --zone-mid: var(--color-accent); /* 6–12 months */
+  --zone-high: #c0650c; /* 12+ months */
 
   --radius: 1rem;
   --space: 1rem;

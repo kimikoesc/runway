@@ -152,19 +152,95 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Slider and Checkbox: native controls tinted with the accent color. */
+/* Slider: drawn by hand so every part uses the brand orange
+   (with accent-color, browsers paint parts black when the accent is a light color). */
 .slider {
   width: 100%;
-  min-height: 2.75rem;
-  accent-color: var(--color-accent);
+  height: 2.75rem; /* tall tap area; the visible track is thin */
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
 }
 
+.slider::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 1rem;
+  background: linear-gradient(to right, var(--color-accent) var(--fill), var(--color-track) 0);
+}
+
+.slider::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 1rem;
+  background: linear-gradient(to right, var(--color-accent) var(--fill), var(--color-track) 0);
+}
+
+.slider::-webkit-slider-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: -0.4375rem; /* centers the thumb on the track: (0.375 - 1.25) / 2 */
+  border: 0.1875rem solid var(--color-surface);
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+  appearance: none;
+}
+
+.slider::-moz-range-thumb {
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 0.1875rem solid var(--color-surface);
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.slider:focus-visible {
+  outline: none;
+}
+
+.slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px var(--color-accent), 0 0 0 0.3125rem var(--color-accent-soft);
+}
+
+.slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 1px var(--color-accent), 0 0 0 0.3125rem var(--color-accent-soft);
+}
+
+/* Checkbox: a rounded box that fills orange with a white tick when checked. */
 .checkbox {
+  display: grid;
+  place-content: center;
   flex: none;
   width: 1.25rem;
   height: 1.25rem;
   margin: 0.75rem; /* grows the tap area to about 2.75rem */
-  accent-color: var(--color-accent);
+  border: 0.125rem solid var(--color-muted);
+  border-radius: 0.3125rem;
+  background: var(--color-surface);
+  appearance: none;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+}
+
+/* The tick: an L shape (left + bottom border) rotated 45°. */
+.checkbox:checked::before {
+  content: '';
+  width: 0.5625rem;
+  height: 0.3125rem;
+  margin-top: -0.125rem;
+  border-left: 0.125rem solid var(--color-on-accent);
+  border-bottom: 0.125rem solid var(--color-on-accent);
+  transform: rotate(-45deg);
+}
+
+.checkbox:focus-visible {
+  outline: 0.125rem solid var(--color-accent);
+  outline-offset: 0.125rem;
 }
 
 /* RunwayStrip: 24 month blocks. Each block paints --zone up to its --fill amount, the rest is track. */

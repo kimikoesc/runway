@@ -1,5 +1,6 @@
 // Slider is a reusable range input. The parent owns the value and gets told about changes.
 // Svelte: `export let value` + `bind:value`. React has no two-way binding: pass `value` down, get changes via `onChange`.
+import type { CSSProperties } from 'react'
 
 // Props lists what the parent passes in (Svelte: the component's `export let` lines).
 type Props = {
@@ -13,6 +14,10 @@ type Props = {
 
 // Slider() renders the range input; values above max just park the thumb at the end.
 export default function Slider({ value, min, max, step, label, onChange }: Props) {
+  const shown = Math.min(value, max)
+  // --fill tells the CSS how much of the track to paint orange (browsers don't style the filled part on their own).
+  const fill = `${((shown - min) / (max - min)) * 100}%`
+
   return (
     <input
       className="slider"
@@ -21,7 +26,8 @@ export default function Slider({ value, min, max, step, label, onChange }: Props
       min={min}
       max={max}
       step={step}
-      value={Math.min(value, max)}
+      value={shown}
+      style={{ '--fill': fill } as CSSProperties}
       onChange={(e) => onChange(Number(e.target.value))}
     />
   )
