@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Runway
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Shows how long your savings last. Enter your savings, your income sources and your monthly spending, and the top of the page shows your runway in months, the month your money runs out, and a chart of your balance falling to zero.
 
-## Available Scripts
+Frontend only for now: data is saved in your browser's localStorage.
 
-In the project directory, you can run:
+## Run it
 
-### `npm start`
+```bash
+npm install
+npm run dev      # start the dev server, open the URL it prints
+npm test         # run tests in watch mode (npx vitest run for a single run)
+npm run build    # type-check, then build to dist/
+npm run preview  # serve the built app
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Needs Node 20.19+.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Folder layout
 
-### `npm test`
+```
+index.html              page shell Vite serves
+src/main.tsx            mounts <App /> into the page
+src/App.tsx             page layout + currency picker
+src/App.css             theme color variables + page layout
+src/types.ts            shared data types
+src/lib/runway.ts       runway math (totals, months, run-out date, chart points)
+src/lib/format.ts       money/date formatting, currency list, slider limit
+src/store/runwayStore.ts  the store: state + every action + useRunway() hook
+src/store/storage.ts    load/save (localStorage today) + default sample data
+src/components/         reusable pieces: Slider, Checkbox, EditableText, MoneyInput,
+                        IconButton, StatCard, Section, RunwayChart (+ components.css)
+src/features/           page sections: RunwayHeader, StatsRow, IncomeSection, SpendingSection
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tests sit next to the code they test (`*.test.ts` / `*.test.tsx`).
 
-### `npm run build`
+## How it works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Math** lives in `src/lib/runway.ts`: net burn = checked spending − income; runway = savings ÷ net burn. If income covers spending, the runway is ∞.
+- **State** lives in `src/store/runwayStore.ts`. Components read it with `useRunway()` and change it only through store actions (`addExpense`, `toggleExpense`, ...).
+- **Saving** lives in `src/store/storage.ts`. The store calls `saveState` after every change.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Adding a theme
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All colors are CSS variables at the top of `src/App.css`. Add an override block and set the attribute on `<html>`:
 
-### `npm run eject`
+```css
+:root[data-theme='dark'] {
+  --color-bg: #0f1115;
+  --color-surface: #181b21;
+  /* ...the rest of the variables */
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Adding the backend later
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Only `src/store/storage.ts` needs to change: make `loadState` / `saveState` call your API. The store's actions and every component stay the same. `runwayStore.setState(...)` can apply data loaded from the server.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Learning notes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+New to React from Svelte? Read [docs/react-for-svelte.md](docs/react-for-svelte.md).
