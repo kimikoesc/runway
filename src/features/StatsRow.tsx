@@ -10,6 +10,7 @@ export default function StatsRow() {
   const { savings, incomes, expenses, currency } = useRunway()
   const spending = totalSpending(expenses)
   const income = totalIncome(incomes)
+  const netBurn = spending - income
 
   return (
     <div className="stats-row">
@@ -18,7 +19,12 @@ export default function StatsRow() {
       </StatCard>
       <StatCard label="Spending / month" value={formatMoney(spending, currency)} />
       <StatCard label="Income / month" value={formatMoney(income, currency)} />
-      <StatCard label="Net burn / month" value={formatMoney(spending - income, currency)} />
+      {/* Earning more than spending: show the extra as a surplus rather than a negative burn. */}
+      {netBurn > 0 ? (
+        <StatCard label="Net burn / month" value={formatMoney(netBurn, currency)} />
+      ) : (
+        <StatCard label="Surplus / month" value={`+${formatMoney(-netBurn, currency)}`} />
+      )}
     </div>
   )
 }

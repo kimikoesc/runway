@@ -82,3 +82,13 @@ it('explains that unchecked spending is left out', () => {
   render(<App />)
   expect(screen.getByText('Unchecked items are not included in the calculation.')).toBeInTheDocument()
 })
+
+it('shows a surplus instead of a negative burn when income covers spending', () => {
+  const state = structuredClone(DEFAULT_STATE)
+  state.incomes[0].amount = 427251 // ¥50,000 more than spending
+  runwayStore.setState(state)
+  render(<App />)
+  expect(screen.getByText('Surplus / month')).toBeInTheDocument()
+  expect(screen.getByText('+¥50,000')).toBeInTheDocument()
+  expect(screen.queryByText('Net burn / month')).not.toBeInTheDocument()
+})

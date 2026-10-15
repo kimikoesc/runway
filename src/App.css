@@ -33,6 +33,21 @@
   box-sizing: border-box;
 }
 
+/* Soft blurred orange glows behind the page. Fixed, so they stay put while the content scrolls. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8% 6%, color-mix(in srgb, var(--color-accent) 30%, transparent), transparent 30%),
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--zone-low) 40%, transparent), transparent 28%),
+    radial-gradient(circle at 75% 92%, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 32%),
+    radial-gradient(circle at 15% 70%, color-mix(in srgb, var(--zone-low) 25%, transparent), transparent 26%);
+  filter: blur(48px);
+}
+
 body {
   margin: 0;
   background: var(--color-bg);

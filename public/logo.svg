@@ -1,10 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Runway logo: a runway seen from the cockpit on a cream tile. The centerline dashes are month blocks,
-       light to dark like the app's strip; the farthest is half painted (the current month). -->
-  <rect width="32" height="32" rx="7" fill="#faf9f5"/>
-  <path d="M2.5 30 L11 2 M29.5 30 L21 2" stroke="#c9c2b6" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-  <path d="M10.32 28.5 L21.68 28.5 L20.60 20.5 L11.40 20.5 Z" fill="#c0650c"/>
-  <path d="M11.81 17.5 L20.19 17.5 L19.38 11.5 L12.62 11.5 Z" fill="#f28c28"/>
-  <path d="M13.02 8.5 L18.98 8.5 L18.44 4.5 L13.56 4.5 Z" fill="#e8e4da"/>
-  <path d="M13.02 8.5 L16 8.5 L16 4.5 L13.56 4.5 Z" fill="#f7b778"/>
+  <!-- Runway logo: three month blocks in perspective, like runway centerline markings.
+       Light to dark like the app's strip; the farthest block is half painted (the current month). -->
+  <path d="M7.47 28.70 L24.53 28.70 L22.99 20.49 L9.01 20.49 Z" fill="#c0650c"/>
+  <path d="M9.50 17.84 L22.50 17.84 L21.41 12.01 L10.59 12.01 Z" fill="#f28c28"/>
+  <path d="M11.09 9.36 L20.91 9.36 L20.12 5.12 L11.88 5.12 Z" fill="#fce5cf"/>
+  <path d="M11.09 9.36 L16.00 9.36 L16.00 5.12 L11.88 5.12 Z" fill="#f7b778"/>
 </svg>
