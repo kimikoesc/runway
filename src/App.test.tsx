@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
 import { runwayStore } from './store/runwayStore'
-import { DEFAULT_STATE } from './store/storage'
+import { SAMPLE_STATE } from './test/sampleState'
 
-// Every test starts from the default sample data.
-beforeEach(() => runwayStore.setState(structuredClone(DEFAULT_STATE)))
+// Every test starts from the same sample data (9.0 months of runway).
+beforeEach(() => runwayStore.setState(structuredClone(SAMPLE_STATE)))
 
 it('renders the app title', () => {
   render(<App />)
@@ -62,7 +62,7 @@ it('shows infinite runway when income covers spending', () => {
 })
 
 it('shows 100+ years instead of an impossible date when burn is tiny', () => {
-  const state = structuredClone(DEFAULT_STATE)
+  const state = structuredClone(SAMPLE_STATE)
   state.incomes[0].amount = 377250 // net burn ¥1 → 2.2 million months
   runwayStore.setState(state)
   render(<App />)
@@ -84,7 +84,7 @@ it('explains that unchecked spending is left out', () => {
 })
 
 it('shows a surplus instead of a negative burn when income covers spending', () => {
-  const state = structuredClone(DEFAULT_STATE)
+  const state = structuredClone(SAMPLE_STATE)
   state.incomes[0].amount = 427251 // ¥50,000 more than spending
   runwayStore.setState(state)
   render(<App />)

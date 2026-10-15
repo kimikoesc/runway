@@ -18,7 +18,6 @@ export default function IncomeSection() {
       title="Sources of income"
       action={<IconButton icon="+" label="Add income source" onClick={runwayStore.addIncome} />}
     >
-      {/* .map() is React's {#each}. `key` lets React track which row is which when rows are added/removed. */}
       {incomes.map((income) => (
         <div className="row income-row" key={income.id}>
           <div className="row-main">

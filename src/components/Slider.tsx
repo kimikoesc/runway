@@ -1,8 +1,6 @@
 // Slider is a reusable range input. The parent owns the value and gets told about changes.
-// Svelte: `export let value` + `bind:value`. React has no two-way binding: pass `value` down, get changes via `onChange`.
 import type { CSSProperties } from 'react'
 
-// Props lists what the parent passes in (Svelte: the component's `export let` lines).
 type Props = {
   value: number
   min: number

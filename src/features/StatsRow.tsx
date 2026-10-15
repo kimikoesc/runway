@@ -19,7 +19,6 @@ export default function StatsRow() {
       </StatCard>
       <StatCard label="Spending / month" value={formatMoney(spending, currency)} />
       <StatCard label="Income / month" value={formatMoney(income, currency)} />
-      {/* Earning more than spending: show the extra as a surplus rather than a negative burn. */}
       {netBurn > 0 ? (
         <StatCard label="Net burn / month" value={formatMoney(netBurn, currency)} />
       ) : (

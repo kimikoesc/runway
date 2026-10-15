@@ -1,6 +1,5 @@
 // Checkbox is a reusable checkbox; the parent decides what checked means.
 
-// Props: current checked state, accessible label, and a callback with the new state.
 type Props = {
   checked: boolean
   label: string

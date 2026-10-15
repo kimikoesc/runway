@@ -1,10 +1,4 @@
-/* App.css: theme variables + page-level styles.
-   To add a theme later, override the variables under :root[data-theme="name"] and set
-   <html data-theme="name">. Nothing else needs to change. */
-
-/* Theme: every color in the app comes from here. */
 :root {
-  /* Warm paper look: cream background, white cards, near-black ink, one bright orange brand color. */
   --color-bg: #faf9f5;
   --color-surface: #ffffff;
   --color-border: #e8e4da;
@@ -24,11 +18,10 @@
   --radius: 1rem;
   --space: 1rem;
   --font: 'Source Code Pro', ui-monospace, Menlo, monospace; /* all text */
-  --font-display: 'Source Serif 4', Georgia, serif; /* big number, headings and money (same family as Source Code Pro) */
+  --font-display: 'Source Serif 4', Georgia, serif; /* big number, headings and money */
 }
 
-/* Dark theme: warm espresso instead of black. Applies when the device is in dark mode
-   (unless the user picked light), or when the user picked dark with the toggle. */
+/* Dark theme */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --color-bg: #1c1814;
@@ -38,7 +31,6 @@
     --color-muted: #a89f93;
     --color-accent-soft: #4a3420;
     --color-track: #3a322a;
-    /* On a dark background the scale flips: more runway = brighter orange. */
     --zone-low: #9a520f;
     --zone-high: #f9b56f;
     --glow-opacity: 0.55;
@@ -54,7 +46,6 @@
   --color-muted: #a89f93;
   --color-accent-soft: #4a3420;
   --color-track: #3a322a;
-  /* On a dark background the scale flips: more runway = brighter orange. */
   --zone-low: #9a520f;
   --zone-high: #f9b56f;
   --glow-opacity: 0.55;
@@ -68,7 +59,7 @@
   box-sizing: border-box;
 }
 
-/* Soft blurred orange glows behind the page. Fixed, so they stay put while the content scrolls. */
+/* Soft blurred orange glows behind the page */
 body::before {
   content: '';
   position: fixed;
@@ -132,7 +123,7 @@ select {
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .currency-select {

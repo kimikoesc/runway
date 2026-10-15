@@ -87,10 +87,10 @@ describe('runwayStore actions', () => {
 })
 
 describe('storage', () => {
-  it('defaults reproduce the example numbers', () => {
-    expect(DEFAULT_STATE.savings).toBe(2200000)
-    expect(DEFAULT_STATE.incomes.reduce((s, i) => s + i.amount, 0)).toBe(132600)
-    expect(DEFAULT_STATE.expenses.reduce((s, e) => s + e.amount, 0)).toBe(377251)
+  it('defaults start empty for the user to fill in', () => {
+    expect(DEFAULT_STATE.savings).toBe(0)
+    expect(DEFAULT_STATE.incomes).toHaveLength(1)
+    expect([...DEFAULT_STATE.incomes, ...DEFAULT_STATE.expenses].every((item) => item.amount === 0)).toBe(true)
   })
 
   it('falls back to defaults on bad JSON', () => {

@@ -1,24 +1,24 @@
-// Where the app's data is saved. Today: the browser's localStorage.
-// When the backend arrives, only this file changes (loadState/saveState call the API instead).
+// Where the app's data is saved initially.
+// TODO: Update this once backend is implemented
 import type { RunwayState } from '../types'
 import { CURRENCIES } from '../lib/format'
 
 // STORAGE_KEY names the localStorage entry. The "v1" lets us change the data shape later without reading old data wrongly.
 const STORAGE_KEY = 'runway:v1'
 
-// DEFAULT_STATE is what a first-time visitor sees. It works out to 9.0 months of runway.
+// DEFAULT_STATE is what a first-time visitor sees: common items with every amount at 0, ready to fill in.
 export const DEFAULT_STATE: RunwayState = {
   currency: 'JPY',
-  savings: 2_200_000,
-  incomes: [{ id: crypto.randomUUID(), name: 'Salary', amount: 132_600 }],
+  savings: 0,
+  incomes: [{ id: crypto.randomUUID(), name: 'Salary', amount: 0 }],
   expenses: [
-    { id: crypto.randomUUID(), name: 'Rent', amount: 150_000, enabled: true },
-    { id: crypto.randomUUID(), name: 'Utilities', amount: 18_500, enabled: true },
-    { id: crypto.randomUUID(), name: 'Groceries', amount: 60_000, enabled: true },
-    { id: crypto.randomUUID(), name: 'Transport', amount: 20_000, enabled: true },
-    { id: crypto.randomUUID(), name: 'Phone & internet', amount: 8_751, enabled: true },
-    { id: crypto.randomUUID(), name: 'Insurance', amount: 40_000, enabled: true },
-    { id: crypto.randomUUID(), name: 'Eating out', amount: 80_000, enabled: true },
+    { id: crypto.randomUUID(), name: 'Rent', amount: 0, enabled: true },
+    { id: crypto.randomUUID(), name: 'Utilities', amount: 0, enabled: true },
+    { id: crypto.randomUUID(), name: 'Groceries', amount: 0, enabled: true },
+    { id: crypto.randomUUID(), name: 'Transport', amount: 0, enabled: true },
+    { id: crypto.randomUUID(), name: 'Phone', amount: 0, enabled: true },
+    { id: crypto.randomUUID(), name: 'Insurance', amount: 0, enabled: true },
+    { id: crypto.randomUUID(), name: 'Eating out', amount: 0, enabled: true },
   ],
 }
 

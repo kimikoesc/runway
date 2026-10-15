@@ -2,7 +2,6 @@
 import type { CSSProperties } from 'react'
 import { STRIP_MONTHS, stripFills } from '../lib/runway'
 
-// Props: how many months the savings last (Infinity = never run out).
 type Props = {
   months: number
 }

@@ -1,6 +1,5 @@
 // IconButton is a small square button with a symbol, e.g. + to add or × to delete.
 
-// Props: the symbol, an accessible label (symbols alone mean nothing to screen readers), click handler.
 type Props = {
   icon: '+' | '×'
   label: string

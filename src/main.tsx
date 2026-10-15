@@ -1,5 +1,3 @@
-// Entry point: mounts the React app into <div id="root"> in index.html.
-// Svelte equivalent: `new App({ target: document.getElementById('root') })` / `mount(App, ...)`.
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'

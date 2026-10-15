@@ -3,7 +3,6 @@ import { useState } from 'react'
 import type { Currency } from '../types'
 import { currencySymbol } from '../lib/format'
 
-// Props: the amount, which currency symbol to show, an accessible label, and a change callback.
 type Props = {
   value: number
   currency: Currency

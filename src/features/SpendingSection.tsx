@@ -13,7 +13,6 @@ export default function SpendingSection() {
   return (
     <Section title="Spending" action={<IconButton icon="+" label="Add expense" onClick={runwayStore.addExpense} />}>
       {expenses.map((expense) => (
-        // className is React's `class` (class is a reserved word in JavaScript).
         <div className={`row expense-row${expense.enabled ? '' : ' is-off'}`} key={expense.id}>
           <Checkbox
             label={`Include ${expense.name}`}

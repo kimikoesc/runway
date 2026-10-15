@@ -1,7 +1,5 @@
-// EditableText looks like plain text but is an input: click it to rename.
 import { useState } from 'react'
 
-// Props: the saved text, an accessible label, and a callback when a new name is saved.
 type Props = {
   value: string
   label: string
@@ -10,8 +8,6 @@ type Props = {
 
 // EditableText() keeps a draft while typing and only saves on Enter or when focus leaves.
 export default function EditableText({ value, label, onChange }: Props) {
-  // useState is React's local component state (Svelte: a plain `let`).
-  // draft is null when not editing, so the input shows the saved value.
   const [draft, setDraft] = useState<string | null>(null)
 
   // save() commits the draft; an empty name is ignored so items never lose their name.

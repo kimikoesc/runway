@@ -10,6 +10,15 @@
 </p>
 
 <p align="center">
+  <a href="https://myrunway.vercel.app/"><b>Try it at myrunway.vercel.app →</b></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/kimikoesc/runway/actions/workflows/test.yml"><img alt="Tests" src="https://github.com/kimikoesc/runway/actions/workflows/test.yml/badge.svg" /></a>
+  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-f28c28?style=flat-square" />
+</p>
+
+<p align="center">
   <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" />
   <img alt="React" src="https://img.shields.io/badge/-React-45b8d8?style=flat-square&logo=react&logoColor=white" />
   <img alt="Vite" src="https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white" />
@@ -108,3 +117,9 @@ Tests sit next to the code they test (`*.test.ts` / `*.test.tsx`).
 - **State** lives in `src/store/runwayStore.ts`. Components read it with `useRunway()` and change it only through store actions (`addExpense`, `toggleExpense`, ...).
 - **Saving** lives in `src/store/storage.ts`. When the backend arrives, only this file changes: `loadState` and `saveState` call the API instead of localStorage.
 - **Themes**: all colors are CSS variables at the top of `src/App.css`. Dark values sit in the `prefers-color-scheme: dark` block and the `[data-theme='dark']` block (keep those two identical).
+
+Every push to `main` runs the type check, tests and build on GitHub Actions (`.github/workflows/test.yml`), and Vercel deploys it to [myrunway.vercel.app](https://myrunway.vercel.app/).
+
+## License
+
+[MIT](LICENSE) © Kimiko Escovilla

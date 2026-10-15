@@ -1,5 +1,4 @@
 // The app's store: holds the state and every action that changes it.
-// Works like a Svelte writable store: getState() ~ get(store), subscribe() ~ store.subscribe().
 // Components never change data directly; they call these actions.
 import { useSyncExternalStore } from 'react'
 import type { Currency, Expense, Income, RunwayState } from '../types'
@@ -17,7 +16,6 @@ export function createRunwayStore(storage: Storage = defaultStorage) {
   const listeners = new Set<() => void>()
 
   // update() is the only place state changes: swap in the new object, save it, tell subscribers.
-  // React needs a NEW object (not a mutated one) to notice a change — unlike Svelte, which tracks assignments.
   function update(next: RunwayState) {
     state = next
     storage.saveState(state)
@@ -81,7 +79,7 @@ export function createRunwayStore(storage: Storage = defaultStorage) {
 export const runwayStore = createRunwayStore()
 
 // useRunway() lets a component read the state and re-render when it changes.
-// Svelte equivalent: `$runwayStore`. useSyncExternalStore is React's built-in way to read an outside store.
+// useSyncExternalStore is React's built-in way to read an outside store.
 export function useRunway(): RunwayState {
   return useSyncExternalStore(runwayStore.subscribe, runwayStore.getState)
 }

@@ -1,11 +1,10 @@
 // Section is a card with a title row (title left, optional action like a + button right) and content below.
 import type { ReactNode } from 'react'
 
-// Props: title, optional action element, and the card's content.
 type Props = {
   title: string
-  action?: ReactNode // Svelte: a named slot, <slot name="action" />
-  children: ReactNode // Svelte: the default <slot />
+  action?: ReactNode
+  children: ReactNode
 }
 
 // Section() renders the card.
