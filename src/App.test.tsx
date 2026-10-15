@@ -71,3 +71,14 @@ it('shows 100+ years instead of an impossible date when burn is tiny', () => {
     screen.getByText('Savings last over 100 years, spending ¥377,251 and earning ¥377,250 a month.'),
   ).toBeInTheDocument()
 })
+
+it('shows currency symbols in the picker', () => {
+  render(<App />)
+  expect(screen.getByRole('option', { name: 'USD ($)' })).toBeInTheDocument()
+  expect(screen.getByRole('option', { name: 'JPY (¥)' })).toBeInTheDocument()
+})
+
+it('explains that unchecked spending is left out', () => {
+  render(<App />)
+  expect(screen.getByText('Unchecked items are not included in the calculation.')).toBeInTheDocument()
+})

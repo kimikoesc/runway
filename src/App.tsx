@@ -2,7 +2,7 @@
 import './App.css'
 import './components/components.css'
 import { runwayStore, useRunway } from './store/runwayStore'
-import { CURRENCIES } from './lib/format'
+import { CURRENCIES, currencySymbol } from './lib/format'
 import type { Currency } from './types'
 import RunwayHeader from './features/RunwayHeader'
 import StatsRow from './features/StatsRow'
@@ -24,7 +24,7 @@ export default function App() {
         >
           {CURRENCIES.map((code) => (
             <option key={code} value={code}>
-              {code}
+              {code} ({currencySymbol(code)})
             </option>
           ))}
         </select>

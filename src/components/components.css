@@ -21,8 +21,8 @@
 .section-header h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.375rem;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 /* IconButton: at least 2.75rem square so it's easy to tap. */
@@ -68,8 +68,37 @@
 }
 
 .stat-value {
+  font-family: var(--font-display);
   font-size: 1.25rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+}
+
+/* Savings input inside a stat card: looks like the other values, with just an underline to show it's editable. */
+.stat-card .money-input {
+  align-items: flex-start; /* text lines up with the other cards' values; the tap area stays 2.75rem tall */
+  gap: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.stat-card .money-input:focus-within {
+  border-bottom-color: var(--color-accent);
+}
+
+.stat-card .money-symbol {
+  color: inherit;
+}
+
+.stat-card .money-input input {
+  text-align: left;
+  font-weight: inherit;
 }
 
 /* EditableText: looks like text until hovered or focused. */
@@ -114,6 +143,7 @@
 
 .money-input input {
   width: 100%;
+  font-family: var(--font-display);
   min-width: 0;
   border: 0;
   outline: none;

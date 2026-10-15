@@ -22,7 +22,7 @@
   --radius: 1rem;
   --space: 1rem;
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif; /* big number and headings */
+  --font-display: 'Source Code Pro', ui-monospace, Menlo, monospace; /* big number, headings and money */
 }
 
 /* Base: reset box sizing so padding doesn't widen elements. */
@@ -69,8 +69,8 @@ select {
 .top-bar h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .currency-select {
@@ -95,10 +95,10 @@ select {
 .runway-months {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: 500;
+  font-size: 2.25rem;
+  font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
 
@@ -168,15 +168,29 @@ select {
   margin-left: auto;
 }
 
-/* Unchecked expense: dimmed so it's clearly not counted. */
+/* Unchecked expense: crossed out and greyed so it's clearly not counted. */
 .expense-row.is-off .editable-text,
 .expense-row.is-off .money-input {
-  opacity: 0.45;
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+.expense-row.is-off .money-input input {
+  text-decoration: line-through;
+}
+
+/* Small grey note at the bottom of a section. */
+.section-note {
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.875rem;
 }
 
 /* Bigger number on larger screens. */
 @media (min-width: 40rem) {
   .runway-months {
-    font-size: 4.5rem;
+    font-size: 3rem;
   }
 }

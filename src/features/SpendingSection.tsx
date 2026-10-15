@@ -34,6 +34,7 @@ export default function SpendingSection() {
           <IconButton icon="×" label={`Delete ${expense.name}`} onClick={() => runwayStore.removeExpense(expense.id)} />
         </div>
       ))}
+      <p className="section-note">Unchecked items are not included in the calculation.</p>
     </Section>
   )
 }
