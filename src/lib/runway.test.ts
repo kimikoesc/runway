@@ -38,6 +38,12 @@ describe('runOutDate', () => {
   })
 })
 
+it('runOutDate does not roll past short months', () => {
+  const d = runOutDate(new Date(2026, 9, 31), 4)
+  expect(d.getMonth()).toBe(1)
+  expect(d.getFullYear()).toBe(2027)
+})
+
 describe('balanceSeries', () => {
   it('steps down by net burn each month to zero', () => {
     expect(balanceSeries(3000, 1000)).toEqual([

@@ -60,3 +60,14 @@ it('shows infinite runway when income covers spending', () => {
   expect(screen.getByText('∞')).toBeInTheDocument()
   expect(screen.getByText('Your income covers your spending — savings never run out.')).toBeInTheDocument()
 })
+
+it('shows 100+ years instead of an impossible date when burn is tiny', () => {
+  const state = structuredClone(DEFAULT_STATE)
+  state.incomes[0].amount = 377250 // net burn ¥1 → 2.2 million months
+  runwayStore.setState(state)
+  render(<App />)
+  expect(screen.getByText('100+ years')).toBeInTheDocument()
+  expect(
+    screen.getByText('Savings last over 100 years, spending ¥377,251 and earning ¥377,250 a month.'),
+  ).toBeInTheDocument()
+})

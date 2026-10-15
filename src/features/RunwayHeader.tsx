@@ -14,14 +14,21 @@ export default function RunwayHeader() {
   const netBurn = spending - income
   const months = runwayMonths(savings, netBurn)
   const isInfinite = months === Infinity
+  // Past 100 years a date is meaningless (and past ~275,000 years JavaScript can't even make one).
+  const isOver100Years = !isInfinite && months > 1200
+  const totals = `spending ${formatMoney(spending, currency)} and earning ${formatMoney(income, currency)} a month.`
 
   return (
     <section className="runway-header">
-      <p className="runway-months">{isInfinite ? '∞' : `${months.toFixed(1)} months`}</p>
+      <p className="runway-months">
+        {isInfinite ? '∞' : isOver100Years ? '100+ years' : `${months.toFixed(1)} months`}
+      </p>
       <p className="runway-sentence">
         {isInfinite
           ? 'Your income covers your spending — savings never run out.'
-          : `Savings last until about ${formatMonthYear(runOutDate(new Date(), months))}, spending ${formatMoney(spending, currency)} and earning ${formatMoney(income, currency)} a month.`}
+          : isOver100Years
+            ? `Savings last over 100 years, ${totals}`
+            : `Savings last until about ${formatMonthYear(runOutDate(new Date(), months))}, ${totals}`}
       </p>
       <RunwayChart savings={savings} netBurn={netBurn} currency={currency} />
     </section>

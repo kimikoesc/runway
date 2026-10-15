@@ -25,9 +25,10 @@ export function runwayMonths(savings: number, netBurn: number): number {
 
 // runOutDate() is the date savings run out: whole months first, then the leftover fraction as days.
 export function runOutDate(from: Date, months: number): Date {
-  const date = new Date(from)
-  date.setMonth(date.getMonth() + Math.floor(months))
-  date.setDate(date.getDate() + Math.round((months % 1) * 30))
+  // Jump to the 1st of the target month, then clamp the day, so Oct 31 + 4 months is Feb 28, not "Feb 31" = Mar 3.
+  const date = new Date(from.getFullYear(), from.getMonth() + Math.floor(months), 1)
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+  date.setDate(Math.min(from.getDate(), lastDay) + Math.round((months % 1) * 30))
   return date
 }
 

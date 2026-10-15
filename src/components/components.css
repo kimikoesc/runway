@@ -73,6 +73,7 @@
 /* EditableText: looks like text until hovered or focused. */
 .editable-text {
   min-width: 0;
+  min-height: 2.75rem; /* easy to tap on phones */
   padding: 0.25em 0.5em;
   border: 1px solid transparent;
   border-radius: 0.5rem;
@@ -86,7 +87,7 @@
 .editable-text:focus {
   border-color: var(--color-accent);
   background: var(--color-surface);
-  outline: none;
+  outline: 2px solid var(--color-accent-soft); /* visible focus ring for keyboard users */
 }
 
 /* MoneyInput: symbol and input inside one bordered box. */
