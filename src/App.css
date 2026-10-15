@@ -21,8 +21,8 @@
 
   --radius: 1rem;
   --space: 1rem;
-  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Source Code Pro', ui-monospace, Menlo, monospace; /* big number, headings and money */
+  --font: 'Source Code Pro', ui-monospace, Menlo, monospace; /* all text */
+  --font-display: 'Source Serif 4', Georgia, serif; /* big number, headings and money (same family as Source Code Pro) */
 }
 
 /* Base: reset box sizing so padding doesn't widen elements. */
