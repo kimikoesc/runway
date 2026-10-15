@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Runway logo: a runway seen from the cockpit. The centerline dashes are month blocks; the farthest is half painted (the current month). -->
+  <style>
+    .asphalt { fill: #1f1e1d; stroke: #1f1e1d; }
+    /* Lighter asphalt on dark backgrounds (e.g. dark browser tabs) so the shape doesn't vanish. */
+    @media (prefers-color-scheme: dark) { .asphalt { fill: #57504a; stroke: #57504a; } }
+  </style>
+  <path class="asphalt" d="M4 31 L28 31 L21 2 L11 2 Z" stroke-width="1.5" stroke-linejoin="round"/>
+  <g fill="#f28c28">
+    <path d="M12.47 30 L19.53 30 L19.06 23.5 L12.94 23.5 Z"/>
+    <path d="M13.12 21 L18.88 21 L18.48 15.5 L13.52 15.5 Z"/>
+    <path d="M13.67 13.5 L18.33 13.5 L18.04 9.5 L13.96 9.5 Z"/>
+  </g>
+  <path d="M14.10 7.5 L17.90 7.5 L17.68 4.5 L14.32 4.5 Z" fill="#faf9f5" fill-opacity=".3"/>
+  <path d="M14.10 7.5 L16 7.5 L16 4.5 L14.32 4.5 Z" fill="#f28c28"/>
+</svg>

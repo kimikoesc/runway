@@ -15,7 +15,11 @@ export default function App() {
   return (
     <main className="app">
       <header className="top-bar">
-        <h1>Runway</h1>
+        <h1 className="brand">
+          {/* alt="" because the word "Runway" right beside it already names the app */}
+          <img src="/logo.svg" alt="" width="28" height="28" />
+          Runway
+        </h1>
         <select
           className="currency-select"
           aria-label="Currency"
