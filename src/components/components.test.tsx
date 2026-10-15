@@ -5,6 +5,7 @@ import Checkbox from './Checkbox'
 import EditableText from './EditableText'
 import MoneyInput from './MoneyInput'
 import IconButton from './IconButton'
+import RunwayChart from './RunwayChart'
 
 describe('MoneyInput', () => {
   it('sends 0 when cleared', () => {
@@ -78,5 +79,17 @@ describe('IconButton', () => {
     render(<IconButton icon="×" label="Delete" onClick={onClick} disabled />)
     userEvent.click(screen.getByRole('button', { name: 'Delete' }))
     expect(onClick).not.toHaveBeenCalled()
+  })
+})
+
+describe('RunwayChart', () => {
+  it('describes the fall to zero', () => {
+    const { container } = render(<RunwayChart savings={3000} netBurn={1000} currency="USD" />)
+    expect(screen.getByRole('img', { name: 'Savings fall from $3,000.00 to zero over 3.0 months' })).toBeInTheDocument()
+    expect(container.querySelector('path')).not.toBeNull()
+  })
+  it('says savings never run out when there is no burn', () => {
+    render(<RunwayChart savings={3000} netBurn={0} currency="USD" />)
+    expect(screen.getByRole('img', { name: 'Savings never run out' })).toBeInTheDocument()
   })
 })
