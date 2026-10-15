@@ -20,10 +20,45 @@
   --zone-mid: var(--color-accent); /* 6–12 months */
   --zone-high: #c0650c; /* 12+ months */
 
+  --glow-opacity: 1; /* background glows; softer in dark mode */
   --radius: 1rem;
   --space: 1rem;
   --font: 'Source Code Pro', ui-monospace, Menlo, monospace; /* all text */
   --font-display: 'Source Serif 4', Georgia, serif; /* big number, headings and money (same family as Source Code Pro) */
+}
+
+/* Dark theme: warm espresso instead of black. Applies when the device is in dark mode
+   (unless the user picked light), or when the user picked dark with the toggle. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #1c1814;
+    --color-surface: #26211c;
+    --color-border: #3a332b;
+    --color-text: #f3eee6;
+    --color-muted: #a89f93;
+    --color-accent-soft: #4a3420;
+    --color-track: #3a322a;
+    /* On a dark background the scale flips: more runway = brighter orange. */
+    --zone-low: #9a520f;
+    --zone-high: #f9b56f;
+    --glow-opacity: 0.55;
+    color-scheme: dark; /* native controls (select menu, scrollbars) go dark too */
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #1c1814;
+  --color-surface: #26211c;
+  --color-border: #3a332b;
+  --color-text: #f3eee6;
+  --color-muted: #a89f93;
+  --color-accent-soft: #4a3420;
+  --color-track: #3a322a;
+  /* On a dark background the scale flips: more runway = brighter orange. */
+  --zone-low: #9a520f;
+  --zone-high: #f9b56f;
+  --glow-opacity: 0.55;
+  color-scheme: dark; /* native controls (select menu, scrollbars) go dark too */
 }
 
 /* Base: reset box sizing so padding doesn't widen elements. */
@@ -46,6 +81,7 @@ body::before {
     radial-gradient(circle at 75% 92%, color-mix(in srgb, var(--color-accent) 20%, transparent), transparent 32%),
     radial-gradient(circle at 15% 70%, color-mix(in srgb, var(--zone-low) 25%, transparent), transparent 26%);
   filter: blur(48px);
+  opacity: var(--glow-opacity);
 }
 
 body {
@@ -90,6 +126,13 @@ select {
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 600;
+}
+
+/* Currency picker and theme toggle, side by side. */
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .currency-select {

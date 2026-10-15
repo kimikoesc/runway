@@ -41,17 +41,11 @@ Tests sit next to the code they test (`*.test.ts` / `*.test.tsx`).
 - **State** lives in `src/store/runwayStore.ts`. Components read it with `useRunway()` and change it only through store actions (`addExpense`, `toggleExpense`, ...).
 - **Saving** lives in `src/store/storage.ts`. The store calls `saveState` after every change.
 
-## Adding a theme
+## Themes
 
-All colors are CSS variables at the top of `src/App.css`. Add an override block and set the attribute on `<html>`:
+Runway has light and dark mode. It follows the device setting until you tap the sun/moon button, then remembers your choice (`src/lib/theme.ts`).
 
-```css
-:root[data-theme='dark'] {
-  --color-bg: #0f1115;
-  --color-surface: #181b21;
-  /* ...the rest of the variables */
-}
-```
+All colors are CSS variables at the top of `src/App.css`: light values on `:root`, dark values in the `prefers-color-scheme: dark` block and the `[data-theme='dark']` block (keep those two identical). To add another theme, add a `:root[data-theme='name']` block that overrides the same variables.
 
 ## Adding the backend later
 
