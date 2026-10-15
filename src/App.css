@@ -4,20 +4,21 @@
 
 /* Theme: every color in the app comes from here. */
 :root {
-  /* Warm paper look: cream background, white cards, near-black ink, one muted orange accent. */
+  /* Warm paper look: cream background, white cards, near-black ink, one bright orange brand color. */
   --color-bg: #faf9f5;
   --color-surface: #ffffff;
   --color-border: #e8e4da;
   --color-text: #1f1e1d;
   --color-muted: #6f6b63;
-  --color-accent: #c2703d; /* muted orange: sliders, checkboxes, + buttons (3.7:1 on white) */
-  --color-accent-soft: #f3dfd0;
+  --color-brand: #f28c28; /* brand orange: logo and runway strip */
+  --color-accent: #d9741a; /* same orange, a shade deeper so sliders, checkboxes and borders stay visible (3.25:1 on white) */
+  --color-accent-soft: #fde3c8;
   --color-track: #efebe3; /* empty month blocks */
 
   /* Runway strip shades: more runway = darker orange. */
-  --zone-low: #e3a678; /* under 6 months */
-  --zone-mid: #c2703d; /* 6–12 months */
-  --zone-high: #9a5428; /* 12+ months */
+  --zone-low: #f7b26f; /* under 6 months */
+  --zone-mid: var(--color-brand); /* 6–12 months */
+  --zone-high: #c4650f; /* 12+ months */
 
   --radius: 1rem;
   --space: 1rem;
